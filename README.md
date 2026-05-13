@@ -2,6 +2,41 @@
 
 A full-stack application that tracks user interactions on a webpage and displays them in a real-time analytics dashboard.
 
+## Assignment Checklist
+
+### Required
+- [x] **Tracking Script** — Vanilla JS script embeddable on any webpage
+- [x] **`page_view` event** — fired on page load
+- [x] **`click` event** — fired on every click with `x/y` coordinates
+- [x] **Event fields** — `session_id`, `event_type`, `page_url`, `timestamp`, `x/y` (clicks)
+- [x] **Session ID** — generated with `crypto.randomUUID()`, persisted in `localStorage`
+- [x] **Backend API** — Node.js + Express
+- [x] **Receive & store events** — `POST /api/events` (batch supported)
+- [x] **List sessions with event counts** — `GET /api/sessions`
+- [x] **Fetch all events for a session** — `GET /api/sessions/:sessionId`
+- [x] **Fetch click data for heatmap** — `GET /api/heatmap?page=<url>`
+- [x] **MongoDB** — all events stored via Mongoose
+- [x] **Sessions View** — lists all sessions with event count, duration, pages visited
+- [x] **User Journey** — click a session to see ordered event timeline
+- [x] **Heatmap View** — select a page URL, visualise click positions on a canvas
+- [x] **Demo webpage** — `demo/index.html` mock e-commerce store with tracker embedded
+- [x] **README** — setup steps, tech stack, assumptions & trade-offs
+
+### Beyond Requirements
+- [x] **Dashboard authentication** — JWT login with bcrypt-hashed admin credentials in MongoDB
+- [x] **Event API protection** — site token validation + per-IP and per-token rate limiting (see [`SECURITY.md`](./SECURITY.md))
+- [x] **TypeScript** — full type safety across backend and frontend
+- [x] **Viewport-aware heatmap** — click coordinates normalised to canvas using recorded `vw/vh`, accurate across all screen resolutions
+- [x] **Event batching** — tracker batches and flushes every 3s, surviving page unload via `keepalive`
+
+---
+
+## Demo
+
+[![Watch Demo](https://img.shields.io/badge/Watch%20Demo-Vimeo-1ab7ea?style=for-the-badge&logo=vimeo&logoColor=white)](https://vimeo.com/1191883052)
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
