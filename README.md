@@ -95,7 +95,13 @@ cp .env.example .env.local   # edit if needed
 npm run dev                  # starts on http://localhost:3000
 ```
 
-Visit `http://localhost:3000` — you will be redirected to `/login`. Sign in with `admin@admin.com` / `admin@1234!`.
+Visit `http://localhost:3000` — you will be redirected to `/login`.
+
+**Dashboard credentials:**
+| Field | Value |
+|---|---|
+| Email | `admin@admin.com` |
+| Password | `admin@1234!` |
 
 Environment variables (`frontend/.env.local`):
 
