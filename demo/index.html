@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo Store — Analytics Tracking Test</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f8fafc; color: #1e293b; }
+
+    header {
+      background: #0f172a;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 { font-size: 1.25rem; }
+    nav a { color: #94a3b8; text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; }
+    nav a:hover { color: #fff; }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);
+      color: #fff;
+    }
+    .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.1rem; opacity: 0.85; margin-bottom: 2rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-primary { background: #fff; color: #0f172a; font-weight: 600; }
+    .btn-secondary { background: transparent; color: #fff; border: 2px solid #fff; margin-left: 1rem; }
+
+    .products {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    .products h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.12); }
+    .card-img {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
+    .card-body { padding: 1rem; }
+    .card-body h4 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .card-body .price { color: #0ea5e9; font-weight: 700; }
+    .card-body .add-btn {
+      margin-top: 0.75rem;
+      width: 100%;
+      padding: 0.5rem;
+      background: #0f172a;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .card-body .add-btn:hover { background: #1e3a5f; }
+
+    .banner {
+      background: #ecfdf5;
+      border-left: 4px solid #22c55e;
+      padding: 1rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: #166534;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 3rem;
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #0f172a;
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    #toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ShopDemo</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">About</a>
+    <a href="#">Cart (0)</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Summer Sale is Live</h2>
+  <p>Up to 50% off on selected items. Limited time only.</p>
+  <a href="#products" class="btn btn-primary">Shop Now</a>
+  <a href="#" class="btn btn-secondary">Learn More</a>
+</section>
+
+<div class="products" id="products">
+  <div class="banner">
+    Analytics tracking is active on this page. Open the dashboard at
+    <strong>http://localhost:3000</strong> to see your session and click data in real time.
+  </div>
+
+  <h3>Featured Products</h3>
+  <div class="grid">
+    <div class="card">
+      <div class="card-img" style="background:#fef3c7">🎧</div>
+      <div class="card-body">
+        <h4>Wireless Headphones</h4>
+        <div class="price">$79.99</div>
+        <button class="add-btn" onclick="addToCart('Wireless Headphones')">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:#ede9fe">⌚</div>
+      <div class="card-body">
+        <h4>Smart Watch</h4>
+        <div class="price">$149.99</div>
+        <button class="add-btn" onclick="addToCart('Smart Watch')">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:#dcfce7">📷</div>
+      <div class="card-body">
+        <h4>Mirrorless Camera</h4>
+        <div class="price">$499.00</div>
+        <button class="add-btn" onclick="addToCart('Mirrorless Camera')">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:#fee2e2">🖥️</div>
+      <div class="card-body">
+        <h4>4K Monitor</h4>
+        <div class="price">$329.99</div>
+        <button class="add-btn" onclick="addToCart('4K Monitor')">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:#dbeafe">⌨️</div>
+      <div class="card-body">
+        <h4>Mechanical Keyboard</h4>
+        <div class="price">$119.99</div>
+        <button class="add-btn" onclick="addToCart('Mechanical Keyboard')">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:#fce7f3">🖱️</div>
+      <div class="card-body">
+        <h4>Ergonomic Mouse</h4>
+        <div class="price">$59.99</div>
+        <button class="add-btn" onclick="addToCart('Ergonomic Mouse')">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 ShopDemo · Analytics powered by CausalFunnel
+</footer>
+
+<div id="toast"></div>
+
+<!-- Analytics tracking script -->
+<script>
+  window.__ANALYTICS_BACKEND__ = 'http://localhost:4000';
+  window.__ANALYTICS_SITE_TOKEN__ = 'pk_live_demo1234';
+</script>
+<script src="http://localhost:3000/tracker.js"></script>
+
+<script>
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function () { t.classList.remove('show'); }, 2000);
+  }
+  function addToCart(name) {
+    showToast(name + ' added to cart!');
+  }
+</script>
+</body>
+</html>
